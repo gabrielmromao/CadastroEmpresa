@@ -11,12 +11,5 @@
         "src": "/(.*)",
         "dest": "index.js"
       }
-    ],
-    "redirects": [
-    {
-      "source": "/",
-      "destination": "/cadastrarEmpresa",
-      "permanent": true
-    }
-  ]
+    ]
   }
