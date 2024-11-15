@@ -10,31 +10,6 @@ app.use(express.urlencoded({ extended: true }));
 const porta = 3000;
 const host = '0.0.0.0'; //ip refere-se a todas as interfaces (placas de rede) locais
 
-
-function menuView(req, resp) {
-    resp.send(`
-        <html>
-            <head>
-                <title>Cadastro de Alunos</title>
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-            </head>
-            <body>
-                <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="#">MENU</a>
-                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="/cadastrarEmpresa">Cadastrar Empresa</a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </body>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        </html>
-        `);
-}
-
 //implementar a funcionalidade para entregar um formulário html para o cliente
 let listaEmpresas = []; // Lista global para armazenar empresas cadastradas
 
@@ -75,11 +50,33 @@ function cadastroEmpresaView(req, resp) {
                         <div class="col-md-2">
                             <label for="uf" class="form-label">UF</label>
                             <select class="form-select" id="uf" name="uf">
-                                <option value="" ${uf === "" ? "selected" : ""}>Selecione</option>
-                                <option value="SP" ${uf === "SP" ? "selected" : ""}>São Paulo</option>
-                                <option value="RJ" ${uf === "RJ" ? "selected" : ""}>Rio de Janeiro</option>
+                                <option value="AC" ${uf === "AC" ? "selected" : ""}>Acre</option>
+                                <option value="AL" ${uf === "AL" ? "selected" : ""}>Alagoas</option>
+                                <option value="AP" ${uf === "AP" ? "selected" : ""}>Amapá</option>
+                                <option value="AM" ${uf === "AM" ? "selected" : ""}>Amazonas</option>
+                                <option value="BA" ${uf === "BA" ? "selected" : ""}>Bahia</option>
+                                <option value="CE" ${uf === "CE" ? "selected" : ""}>Ceará</option>
+                                <option value="DF" ${uf === "DF" ? "selected" : ""}>Distrito Federal</option>
+                                <option value="ES" ${uf === "ES" ? "selected" : ""}>Espírito Santo</option>
+                                <option value="GO" ${uf === "GO" ? "selected" : ""}>Goiás</option>
+                                <option value="MA" ${uf === "MA" ? "selected" : ""}>Maranhão</option>
+                                <option value="MT" ${uf === "MT" ? "selected" : ""}>Mato Grosso</option>
+                                <option value="MS" ${uf === "MS" ? "selected" : ""}>Mato Grosso do Sul</option>
                                 <option value="MG" ${uf === "MG" ? "selected" : ""}>Minas Gerais</option>
-                                <!-- Adicione outros estados -->
+                                <option value="PA" ${uf === "PA" ? "selected" : ""}>Pará</option>
+                                <option value="PB" ${uf === "PB" ? "selected" : ""}>Paraíba</option>
+                                <option value="PR" ${uf === "PR" ? "selected" : ""}>Paraná</option>
+                                <option value="PE" ${uf === "PE" ? "selected" : ""}>Pernambuco</option>
+                                <option value="PI" ${uf === "PI" ? "selected" : ""}>Piauí</option>
+                                <option value="RJ" ${uf === "RJ" ? "selected" : ""}>Rio de Janeiro</option>
+                                <option value="RN" ${uf === "RN" ? "selected" : ""}>Rio Grande do Norte</option>
+                                <option value="RS" ${uf === "RS" ? "selected" : ""}>Rio Grande do Sul</option>
+                                <option value="RO" ${uf === "RO" ? "selected" : ""}>Rondônia</option>
+                                <option value="RR" ${uf === "RR" ? "selected" : ""}>Roraima</option>
+                                <option value="SC" ${uf === "SC" ? "selected" : ""}>Santa Catarina</option>
+                                <option value="SP" ${uf === "SP" ? "selected" : ""}>São Paulo</option>
+                                <option value="SE" ${uf === "SE" ? "selected" : ""}>Sergipe</option>
+                                <option value="TO" ${uf === "TO" ? "selected" : ""}>Tocantins</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -190,6 +187,11 @@ function listarEmpresas(req, resp) {
 app.get('/cadastrarEmpresa', cadastroEmpresaView);
 app.post('/cadastrarEmpresa', cadastrarEmpresa);
 app.get('/empresas', listarEmpresas);
+app.get('/', (req, resp) => {
+    resp.redirect('/cadastrarEmpresa'); // Redireciona para a página de cadastro
+});
+
+
 
 
 
